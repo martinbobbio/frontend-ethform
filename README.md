@@ -13,8 +13,8 @@
 
 Implementación y desarrollo de formulario que simula el envio de ETH.
 El objetivo es que el usuario envie ethers a otros usuarios ingresando la direccion eth y el monto a enviar.
-<br>
-Tecnologias usadas: Angular 8 - Ngrx - Bootstrap
+<br><br>
+## Tecnologias
 <ul>
   <li>Angular 8</li>
   <li>Ngrx</li>
