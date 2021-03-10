@@ -2,7 +2,7 @@
   <br>
   <img src="https://cryptologos.cc/logos/ripio-credit-network-rcn-logo.png" width="200">
   <br><br>
-  <a href="https://martinbobbio.github.io/frontend-sendether">
+  <a href="https://martinbobbio.github.io/frontend-ethform">
     Ripio Challenge
   </a>
   <br><br>
