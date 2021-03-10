@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://ngrx.io/assets/images/badge.svg" width="200">
+  <img src="https://cryptologos.cc/logos/ripio-credit-network-rcn-logo.png" width="200">
   <br><br>
   <a href="https://martinbobbio.github.io/frontend-sendether">
     Ripio Challenge
