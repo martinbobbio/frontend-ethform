@@ -1,0 +1,42 @@
+.page-body-wrapper {
+  min-height: calc(100vh - 63px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  padding-left: 0;
+  padding-right: 0;
+}
+.page-body-wrapper.full-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+.content-wrapper {
+  background: #f2f8f9;
+  padding: 1.5rem 1.7rem;
+  width: 100%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+.input-group-append .input-group-text {
+  background: transparent;
+  border-color: #f2f2f2;
+}
+.auth.auth-bg-1 {
+  background: #757575;
+}
+.auth.theme-one .auto-form-wrapper {
+  background: #ffffff;
+  padding: 40px 40px 10px;
+  border-radius: 4px;
+  box-shadow: 0 -25px 37.7px 11.3px rgba(8, 143, 220, 0.07);
+}
+.auth.theme-one .auto-form-wrapper .form-group .input-group {
+  height: 44px;
+}
+.auth.theme-one .auto-form-wrapper .form-group .submit-btn {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  padding: 12px 8px;
+  font-weight: 600;
+}
