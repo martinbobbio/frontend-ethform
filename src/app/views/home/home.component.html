@@ -1,41 +1,53 @@
-
-    <div class="page-body-wrapper full-page-wrapper auth-page">
-      <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
-        <div class="row w-100 ml-0">
-          <div class="col-lg-4 mx-auto">
-            <h2 class="text-center mb-4" style="color: white;">Send Ether</h2>
-            <div class="auto-form-wrapper">
-              <div class="row mb-4">
-                <div class="col-6 bold text-info font-weight-bold">Balance actual</div>
-                <div class="col-6 bold text-info font-weight-bold">17.42 Ethers</div>
-              </div>
-              <hr/>
-              <form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
-                <div class="form-group">
-                  <label class="label">Address ETH</label>
-                  <div class="input-group">
-                    <input ngModel name="address" type="text" class="form-control" required placeholder="Example: 0x892..." style="min-height:44px">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="label">Amount (ETH)</label>
-                  <div class="input-group">
-                    <input ngModel name="amount" type="number" class="form-control" required placeholder="Example: 3.25" style="min-height:44px">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="label">Gas</label>
-                  <div class="input-group">
-                    <input ngModel readonly value="0.002" name="gas" type="text" class="form-control" placeholder="0.003" style="min-height:44px">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button [disabled]="form.invalid" class="btn btn-info submit-btn btn-block">Generate Transaction</button>
-                </div>
-              </form>
-            </div>
+<div class="page-body-wrapper full-page-wrapper auth-page">
+  <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+    <div class="row w-100 ml-0">
+      <div class="col-lg-4 mx-auto">
+        <h2 class="text-center mb-4" style="color: white;">Send Ether</h2>
+        <div class="auto-form-wrapper">
+          <div class="row mb-4">
+            <div class="col-6 bold text-info font-weight-bold">Balance actual</div>
+            <div class="col-6 bold text-info font-weight-bold">{{user_balance}} Ethers</div>
           </div>
+          <hr/>
+          <form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
+            <div class="form-group">
+              <label class="label">Address ETH</label>
+              <div class="input-group" [ngStyle]="{'margin-bottom': form.value.address !== '' ? '39px' : '0px' }">
+                <input ngModel name="address" type="text" class="form-control" [ngClass]="{'is-valid':validateAddress(form.value.address), 'is-invalid': (!validateAddress(form.value.address) && form.value.address !== '')}" required placeholder="Example: 0x892..." style="min-height:44px">
+                <div *ngIf="form.value.address" class="valid-feedback">
+                  The ETH Address is valid.
+                </div>
+                <div *ngIf="(!validateAddress(form.value.address) && form.value.address !== '')" class="invalid-feedback">
+                  The ETH Address is invalid.
+                </div>
+              </div>
+              <small *ngIf="!form.value.address" id="addressHelp" class="form-text text-muted">The address is required.</small>
+            </div>
+            <div class="form-group">
+              <label class="label">Amount</label>
+              <div class="input-group" [ngStyle]="{'margin-bottom': (!validateAmount(form.value.amount) && form.value.amount !== '' && form.value.amount !== null) ? '39px' : '0px' }">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">ETH </div>
+                </div>
+                <input ngModel name="amount" type="number" [ngClass]="{'is-valid':validateAmount(form.value.amount), 'is-invalid': (!validateAmount(form.value.amount) && form.value.amount !== '')}" class="form-control" required placeholder="Example: 3.275" style="min-height:44px">
+                <div *ngIf="txt_amount_error" class="invalid-feedback">
+                  {{txt_amount_error}}
+                </div>
+              </div>
+              <small *ngIf="!form.value.amount" id="addressHelp" class="form-text text-muted">The amount is required.</small>
+            </div>
+            <div class="form-group">
+              <label class="label">Gas</label>
+              <div class="input-group">
+                <input ngModel readonly [value]="gas" name="gas" type="text" class="form-control" [placeholder]="gas" style="min-height:44px">
+              </div>
+            </div>
+            <div class="form-group">
+              <button [disabled]="!validateAmount(form.value.amount) || !validateAddress(form.value.address)" class="btn btn-info submit-btn btn-block">Generate Transaction</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  
+  </div>
+</div>
