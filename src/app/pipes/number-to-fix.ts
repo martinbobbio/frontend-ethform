@@ -1,20 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /*
- * Raise the value exponentially
- * Takes an exponent argument that defaults to 1.
+ * Parses the value indicated by the parameter in decimal
  * Usage:
  *   value | numberToFix:exponent
  * Example:
- *   {{ 2 | numberToFix:10 }}
- *   formats to: 1024
+ *   {{ 22121.23311 | numberToFix:2 }}
+ *   formats to: 22121.23
 */
 @Pipe({
   name: 'numberToFix'
 })
 export class NumberToFix implements PipeTransform {
 
-  transform(value: number, fix?: number): number {
+  transform(value: number = 0, fix: number = 3): number {
 
     return Number(value.toFixed(fix))
   }

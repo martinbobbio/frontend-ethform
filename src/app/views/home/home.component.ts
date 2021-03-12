@@ -14,14 +14,18 @@ import { Transaction } from 'src/app/models/transaction.model';
 
 export class HomeComponent implements OnInit {
 
-  //0xA11e73F851C12d8d25a7b88a6121AD365De1838c
-
   constructor(public _appService:AppService , public _store: Store<AppState>) {}
 
   user_balance
   gas
   txt_amount_error
 
+  /**
+   * @description It is validated if the amount is less than the current balance
+   *
+   * @param amount - The amount of the form
+   * @returns The status of validation
+   */
   validateAmount = (amount:any) => {
     this.txt_amount_error = null
     if(amount === '' || amount === 0 || amount === null) return false
@@ -36,6 +40,12 @@ export class HomeComponent implements OnInit {
     return false
   }
 
+  /**
+   * @description It is validated if the eth address is correct with the library of WEB3
+   *
+   * @param address - The address of the form
+   * @returns The status of validation
+   */
   validateAddress = (address:string) => {
     return Web3.utils.isAddress(address)
   }
@@ -47,6 +57,12 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  /**
+   * @description Method to send the data and make the transaction
+   *
+   * @param data - This is an object that contains the address, amount and gas
+   * @returns Nothing
+   */
   onSubmit(data:Transaction){
     data.gas = this.gas
     this._appService.sendTransaction(data)

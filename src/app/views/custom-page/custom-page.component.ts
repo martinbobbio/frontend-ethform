@@ -15,6 +15,8 @@ export class CustomPageComponent implements OnInit {
   loading
   custom_page
   amount_sended
+  error_status
+  error_text
 
   constructor(public _store: Store<AppState>, private router:Router) {}
 
@@ -24,10 +26,12 @@ export class CustomPageComponent implements OnInit {
       this.loading = app.loading
       this.custom_page = app.custom_page
       this.amount_sended = app.transaction.amount + app.transaction.gas
+      this.error_text = app.error_text
+      this.error_status = app.error_status
     })
   }
 
   goHome() {
-    this.router.navigate([''])
+    this.router.navigate(['/'])
   }
 }

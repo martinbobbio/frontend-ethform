@@ -65,3 +65,14 @@ button.btn-info{
 .align-center{
   text-align: center;
 }
+
+
+@media (max-width: 600px) {
+  .content-wrapper{
+    padding: 0px 4px;
+  }
+  .auto-form-wrapper{
+    padding:30px 25px 10px !important;
+  }
+}
+

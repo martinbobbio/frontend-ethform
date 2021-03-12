@@ -41,7 +41,7 @@ module.exports = "<router-outlet></router-outlet>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"row mb-4\">\n    <div class=\"col-6 bold text-info font-weight-bold\">Current balance</div>\n    <div class=\"col-6 bold text-info font-weight-bold\">{{userBalance | numberToFix:3}} Ethers</div>\n  </div>\n  <hr/>\n</div>"
+module.exports = "<div>\n  <div id=\"container\" class=\"row mb-4\">\n    <div class=\"col-6 bold text-info font-weight-bold\">Current balance</div>\n    <div id=\"balance\" class=\"col-6 bold text-info font-weight-bold\">{{userBalance | numberToFix:3}} Ethers</div>\n  </div>\n  <hr/>\n</div>"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<div>\n  <div class=\"row mb-4\">\n    <div class=\"col-6 bold
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-body-wrapper full-page-wrapper auth-page\">\n  <div class=\"content-wrapper d-flex align-items-center auth auth-bg-1 theme-one\">\n    <div class=\"row w-100 ml-0\">\n      <div class=\"col-lg-4 mx-auto\">\n        <h2 class=\"text-center mb-4\" style=\"color: white;\">{{title}}</h2>\n        <div class=\"auto-form-wrapper\">\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"page-body-wrapper full-page-wrapper auth-page\">\n  <div class=\"content-wrapper d-flex align-items-center auth auth-bg-1 theme-one\">\n    <div class=\"row w-100 ml-0\">\n      <div class=\"col-lg-4 mx-auto\">\n        <h2 id=\"title\" class=\"text-center mb-4\" style=\"color: white;\">{{title}}</h2>\n        <div class=\"auto-form-wrapper\">\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<div class=\"page-body-wrapper full-page-wrapper auth-page\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-wrapper title=\"Detail\">\n  <app-user-balance [userBalance]=\"user_balance\"></app-user-balance>\n  <div *ngIf=\"loading\" class=\"text-center py-5\">\n    <div class=\"spinner-border text-info\" role=\"status\">\n    </div>\n    <p class=\"text-info mt-4\">We are processing your transaction...</p>\n  </div>\n  <div *ngIf=\"!loading && custom_page ==='PAGE_SUCCESS'\" className=\"py-5\" style=\"text-align: center;\">\n    <i class=\"bi-check2-circle text-info\" style=\"font-size: 6rem;\"></i>\n    <p class=\"bold text-info mt-3\">{{amount_sended}} ETH sended.<p>\n    <p class=\"text-info mt-2\">Your transaction was successful.</p>\n    <button (click)=\"goHome()\" class=\"btn btn-info submit-btn btn-block mt-5 mb-4\">Make another transaction</button>\n  </div>\n  <div *ngIf=\"!loading && custom_page ==='PAGE_ERROR'\" className=\"py-5\" style=\"text-align: center;\">\n    <i class=\"bi-x text-info\" style=\"font-size: 6rem;\"></i>\n    <p class=\"text-info mt-2\">Sorry, the transaction failed</p>\n    <button (click)=\"goHome()\" class=\"btn btn-info submit-btn btn-block mt-5 mb-4\">Try Again...</button>\n  </div>\n</app-wrapper>"
+module.exports = "<app-wrapper title=\"Detail\">\n  <app-user-balance [userBalance]=\"user_balance\"></app-user-balance>\n  <div *ngIf=\"loading\" class=\"text-center py-5\">\n    <div class=\"spinner-border text-info\" role=\"status\">\n    </div>\n    <p class=\"text-info mt-4\">We are processing your transaction...</p>\n  </div>\n  <div *ngIf=\"!loading && custom_page ==='PAGE_SUCCESS'\" className=\"py-5\" style=\"text-align: center;\">\n    <i class=\"bi-check2-circle text-info\" style=\"font-size: 6rem;\"></i>\n    <p class=\"bold text-info mt-3\">{{amount_sended}} ETH sended.<p>\n    <p class=\"text-info mt-2\">Your transaction was successful.</p>\n    <button (click)=\"goHome()\" class=\"btn btn-info submit-btn btn-block mt-5 mb-4\">Make another transaction</button>\n  </div>\n  <div *ngIf=\"!loading && custom_page ==='PAGE_ERROR'\" className=\"py-5\" style=\"text-align: center;\">\n    <i class=\"bi-x text-info\" style=\"font-size: 6rem;\"></i>\n    <p class=\"bold text-info mt-3\">Error {{error_status}} ({{error_text}})<p>\n    <p class=\"text-info mt-2\">Sorry, the transaction failed</p>\n    <button (click)=\"goHome()\" class=\"btn btn-info submit-btn btn-block mt-5 mb-4\">Try Again...</button>\n  </div>\n</app-wrapper>"
 
 /***/ }),
 
@@ -113,7 +113,7 @@ module.exports = g;
 /*!***************************************!*\
   !*** ./src/app/actions/app.action.ts ***!
   \***************************************/
-/*! exports provided: SET_TRANSACTION, SET_LOADING, SET_CUSTOM_PAGE, SetTransactionAction, SetLoadingAction, SetCustomPageAction */
+/*! exports provided: SET_TRANSACTION, SET_LOADING, SET_CUSTOM_PAGE, SET_ERROR, SetTransactionAction, SetLoadingAction, SetCustomPageAction, SetErrorAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -121,14 +121,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TRANSACTION", function() { return SET_TRANSACTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LOADING", function() { return SET_LOADING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CUSTOM_PAGE", function() { return SET_CUSTOM_PAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_ERROR", function() { return SET_ERROR; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTransactionAction", function() { return SetTransactionAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetLoadingAction", function() { return SetLoadingAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetCustomPageAction", function() { return SetCustomPageAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetErrorAction", function() { return SetErrorAction; });
 /* harmony import */ var _models_transaction_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/transaction.model */ "./src/app/models/transaction.model.ts");
 
 var SET_TRANSACTION = '[APP] Set Transaction';
 var SET_LOADING = '[APP] Set Loading';
 var SET_CUSTOM_PAGE = '[APP] Set Custom Page';
+var SET_ERROR = '[APP] Set Error';
 var SetTransactionAction = /** @class */ (function () {
     function SetTransactionAction(data) {
         this.data = data;
@@ -162,6 +165,19 @@ var SetCustomPageAction = /** @class */ (function () {
     return SetCustomPageAction;
 }());
 
+var SetErrorAction = /** @class */ (function () {
+    function SetErrorAction(error_status, error_text) {
+        this.error_status = error_status;
+        this.error_text = error_text;
+        this.type = SET_ERROR;
+    }
+    SetErrorAction.ctorParameters = function () { return [
+        null,
+        null
+    ]; };
+    return SetErrorAction;
+}());
+
 
 
 /***/ }),
@@ -189,7 +205,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     { path: '', component: _views_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"] },
     { path: 'custom-page', component: _views_custom_page_custom_page_component__WEBPACK_IMPORTED_MODULE_3__["CustomPageComponent"] },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '/' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -373,7 +389,7 @@ var UserBalanceComponent = /** @class */ (function () {
     UserBalanceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-user-balance',
-            template: __webpack_require__(/*! raw-loader!./user-balance.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/user-balance/user-balance.component.html")
+            template: __webpack_require__(/*! raw-loader!./user-balance.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/user-balance/user-balance.component.html"),
         })
     ], UserBalanceComponent);
     return UserBalanceComponent;
@@ -458,6 +474,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 
 
+/*
+ * Transform the first letter in appercase
+ * Usage:
+ *   value | firstUppercase
+ * Example:
+ *   {{ martin | firstUppercase }}
+ *   formats to: Martin
+*/
 var FirstUppercasePipe = /** @class */ (function () {
     function FirstUppercasePipe() {
     }
@@ -491,18 +515,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /*
- * Raise the value exponentially
- * Takes an exponent argument that defaults to 1.
+ * Parses the value indicated by the parameter in decimal
  * Usage:
  *   value | numberToFix:exponent
  * Example:
- *   {{ 2 | numberToFix:10 }}
- *   formats to: 1024
+ *   {{ 22121.23311 | numberToFix:2 }}
+ *   formats to: 22121.23
 */
 var NumberToFix = /** @class */ (function () {
     function NumberToFix() {
     }
     NumberToFix.prototype.transform = function (value, fix) {
+        if (value === void 0) { value = 0; }
+        if (fix === void 0) { fix = 3; }
         return Number(value.toFixed(fix));
     };
     NumberToFix = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -545,25 +570,32 @@ var AppService = /** @class */ (function () {
         this._store = _store;
         this.http = http;
     }
+    /**
+     * @description The method sends the data entered by the user with the method
+     *  post to the api and displays the success or error screen
+     *
+     * @param data - This object contains the transaction of the user (amount, gas, address)
+     * @returns Nothing
+     */
     AppService.prototype.sendTransaction = function (data) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.router.navigate(['custom-page']);
-                this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetLoadingAction"](true));
-                //This timer is only for simulate the loading
-                setTimeout(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                        //const response = await this.http.post('api/send-transaction', data)
-                        this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetTransactionAction"](data));
-                        this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetCustomPageAction"]("PAGE_ERROR"));
-                        this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetLoadingAction"](false));
-                        return [2 /*return*/];
-                    });
-                }); }, 3000);
-                return [2 /*return*/];
+        var _this = this;
+        this.router.navigate(['custom-page']);
+        this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetLoadingAction"](true));
+        // This timer is only for see the loading
+        setTimeout(function () {
+            _this.http.post("https://rcn.api/send-transaction", data).subscribe(function (response) {
+                if (response.success) {
+                    _this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetTransactionAction"](data));
+                }
+                else {
+                    _this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetCustomPageAction"]("PAGE_ERROR"));
+                    _this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetLoadingAction"](false));
+                }
+            }, function (error) {
+                console.log(error);
+                _this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetErrorAction"](error.status, error.statusText));
             });
-        });
+        }, 2000);
     };
     AppService.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
@@ -601,17 +633,21 @@ var initState = {
     transaction: { address: '', amount: 0, gas: gas_random },
     user_balance: 1200.075,
     loading: false,
-    custom_page: "PAGE_SUCCESS"
+    custom_page: "PAGE_SUCCESS",
+    error_status: "",
+    error_text: ""
 };
 function appReducer(state, action) {
     if (state === void 0) { state = initState; }
     switch (action.type) {
         case _actions_app_action__WEBPACK_IMPORTED_MODULE_1__["SET_TRANSACTION"]:
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { transaction: tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, action.data), user_balance: state.user_balance - action.data.amount - action.data.gas });
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { transaction: tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, action.data), user_balance: state.user_balance - action.data.amount - action.data.gas, custom_page: "PAGE_SUCCESS", loading: false });
         case _actions_app_action__WEBPACK_IMPORTED_MODULE_1__["SET_LOADING"]:
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { loading: action.status });
         case _actions_app_action__WEBPACK_IMPORTED_MODULE_1__["SET_CUSTOM_PAGE"]:
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { custom_page: action.custom_page });
+        case _actions_app_action__WEBPACK_IMPORTED_MODULE_1__["SET_ERROR"]:
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { custom_page: "PAGE_ERROR", error_text: action.error_text, error_status: action.error_status, loading: false });
         default: return state;
     }
 }
@@ -649,10 +685,12 @@ var CustomPageComponent = /** @class */ (function () {
             _this.loading = app.loading;
             _this.custom_page = app.custom_page;
             _this.amount_sended = app.transaction.amount + app.transaction.gas;
+            _this.error_text = app.error_text;
+            _this.error_status = app.error_status;
         });
     };
     CustomPageComponent.prototype.goHome = function () {
-        this.router.navigate(['']);
+        this.router.navigate(['/']);
     };
     CustomPageComponent.ctorParameters = function () { return [
         { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_2__["Store"] },
@@ -693,11 +731,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeComponent = /** @class */ (function () {
-    //0xA11e73F851C12d8d25a7b88a6121AD365De1838c
     function HomeComponent(_appService, _store) {
         var _this = this;
         this._appService = _appService;
         this._store = _store;
+        /**
+         * @description It is validated if the amount is less than the current balance
+         *
+         * @param amount - The amount of the form
+         * @returns The status of validation
+         */
         this.validateAmount = function (amount) {
             _this.txt_amount_error = null;
             if (amount === '' || amount === 0 || amount === null)
@@ -712,6 +755,12 @@ var HomeComponent = /** @class */ (function () {
             _this.txt_amount_error = 'The amount is higher than the total of your current balance and gas';
             return false;
         };
+        /**
+         * @description It is validated if the eth address is correct with the library of WEB3
+         *
+         * @param address - The address of the form
+         * @returns The status of validation
+         */
         this.validateAddress = function (address) {
             return web3__WEBPACK_IMPORTED_MODULE_4___default.a.utils.isAddress(address);
         };
@@ -723,6 +772,12 @@ var HomeComponent = /** @class */ (function () {
             _this.gas = app.transaction.gas;
         });
     };
+    /**
+     * @description Method to send the data and make the transaction
+     *
+     * @param data - This is an object that contains the address, amount and gas
+     * @returns Nothing
+     */
     HomeComponent.prototype.onSubmit = function (data) {
         data.gas = this.gas;
         this._appService.sendTransaction(data);

@@ -13,6 +13,7 @@
   </div>
   <div *ngIf="!loading && custom_page ==='PAGE_ERROR'" className="py-5" style="text-align: center;">
     <i class="bi-x text-info" style="font-size: 6rem;"></i>
+    <p class="bold text-info mt-3">Error {{error_status}} ({{error_text}})<p>
     <p class="text-info mt-2">Sorry, the transaction failed</p>
     <button (click)="goHome()" class="btn btn-info submit-btn btn-block mt-5 mb-4">Try Again...</button>
   </div>

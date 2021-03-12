@@ -1,5 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+
+/*
+ * Transform the first letter in appercase
+ * Usage:
+ *   value | firstUppercase
+ * Example:
+ *   {{ martin | firstUppercase }}
+ *   formats to: Martin
+*/
 @Pipe({
   name: 'firstUppercase'
 })

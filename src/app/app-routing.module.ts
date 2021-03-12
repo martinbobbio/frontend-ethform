@@ -6,7 +6,7 @@ import { HomeComponent } from './views/home/home.component';
 const routes:Routes = [
     { path: '', component:HomeComponent },
     { path: 'custom-page', component:CustomPageComponent },
-    { path: '**', redirectTo:'' } 
+    { path: '**', redirectTo:'/' } 
 ]
 
 @NgModule({
