@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from 'src/app/providers/alert.service';
+import { AppService } from 'src/app/providers/app.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 
 import Web3 from 'web3';
+import { Transaction } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   //0xA11e73F851C12d8d25a7b88a6121AD365De1838c
 
-  constructor(public _alertService:AlertService , public _store: Store<AppState>) {}
+  constructor(public _appService:AppService , public _store: Store<AppState>) {}
 
   user_balance
   gas
@@ -41,13 +42,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._store.select('app').subscribe(app => {
-      console.log(app)
       this.user_balance = app.user_balance
       this.gas = app.transaction.gas
     })
   }
 
-  onSubmit(data:any){
-    console.log(data)
+  onSubmit(data:Transaction){
+    data.gas = this.gas
+    this._appService.sendTransaction(data)
   }
 }

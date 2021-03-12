@@ -3,6 +3,7 @@ import { Transaction } from '../models/transaction.model';
 
 export const SET_TRANSACTION = '[APP] Set Transaction'
 export const SET_LOADING = '[APP] Set Loading'
+export const SET_CUSTOM_PAGE = '[APP] Set Custom Page'
 
 
 export class SetTransactionAction implements Action {
@@ -10,9 +11,14 @@ export class SetTransactionAction implements Action {
     constructor(public data:Transaction){}
 }
 
-export class SetTLoadingAction implements Action {
+export class SetLoadingAction implements Action {
     readonly type = SET_LOADING
     constructor(public status:boolean){}
 }
 
-export type actions = SetTransactionAction | SetTLoadingAction
+export class SetCustomPageAction implements Action {
+    readonly type = SET_CUSTOM_PAGE
+    constructor(public custom_page:"PAGE_ERROR" | "PAGE_SUCCESS"){}
+}
+
+export type actions = SetTransactionAction | SetLoadingAction | SetCustomPageAction

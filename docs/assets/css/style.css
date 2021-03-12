@@ -40,3 +40,28 @@
   padding: 12px 8px;
   font-weight: 600;
 }
+
+.pointer{
+  cursor: pointer;
+}
+
+.spinner-border{
+  width:60px !important;
+  height: 60px !important;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+p.text-info, div.text-info, i.text-info{
+  color:#6d07e6 !important;
+}
+
+button.btn-info{
+  background-color:#6d07e6 !important;
+}
+
+.align-center{
+  text-align: center;
+}

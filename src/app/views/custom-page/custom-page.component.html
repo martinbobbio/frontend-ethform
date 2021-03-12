@@ -1,0 +1,19 @@
+<app-wrapper title="Detail">
+  <app-user-balance [userBalance]="user_balance"></app-user-balance>
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-info" role="status">
+    </div>
+    <p class="text-info mt-4">We are processing your transaction...</p>
+  </div>
+  <div *ngIf="!loading && custom_page ==='PAGE_SUCCESS'" className="py-5" style="text-align: center;">
+    <i class="bi-check2-circle text-info" style="font-size: 6rem;"></i>
+    <p class="bold text-info mt-3">{{amount_sended}} ETH sended.<p>
+    <p class="text-info mt-2">Your transaction was successful.</p>
+    <button (click)="goHome()" class="btn btn-info submit-btn btn-block mt-5 mb-4">Make another transaction</button>
+  </div>
+  <div *ngIf="!loading && custom_page ==='PAGE_ERROR'" className="py-5" style="text-align: center;">
+    <i class="bi-x text-info" style="font-size: 6rem;"></i>
+    <p class="text-info mt-2">Sorry, the transaction failed</p>
+    <button (click)="goHome()" class="btn btn-info submit-btn btn-block mt-5 mb-4">Try Again...</button>
+  </div>
+</app-wrapper>

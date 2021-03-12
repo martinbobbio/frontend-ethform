@@ -34,6 +34,39 @@ module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/user-balance/user-balance.component.html":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/user-balance/user-balance.component.html ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"row mb-4\">\n    <div class=\"col-6 bold text-info font-weight-bold\">Current balance</div>\n    <div class=\"col-6 bold text-info font-weight-bold\">{{userBalance | numberToFix:3}} Ethers</div>\n  </div>\n  <hr/>\n</div>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/wrapper/wrapper.component.html":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/wrapper/wrapper.component.html ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page-body-wrapper full-page-wrapper auth-page\">\n  <div class=\"content-wrapper d-flex align-items-center auth auth-bg-1 theme-one\">\n    <div class=\"row w-100 ml-0\">\n      <div class=\"col-lg-4 mx-auto\">\n        <h2 class=\"text-center mb-4\" style=\"color: white;\">{{title}}</h2>\n        <div class=\"auto-form-wrapper\">\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/views/custom-page/custom-page.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/views/custom-page/custom-page.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-wrapper title=\"Detail\">\n  <app-user-balance [userBalance]=\"user_balance\"></app-user-balance>\n  <div *ngIf=\"loading\" class=\"text-center py-5\">\n    <div class=\"spinner-border text-info\" role=\"status\">\n    </div>\n    <p class=\"text-info mt-4\">We are processing your transaction...</p>\n  </div>\n  <div *ngIf=\"!loading && custom_page ==='PAGE_SUCCESS'\" className=\"py-5\" style=\"text-align: center;\">\n    <i class=\"bi-check2-circle text-info\" style=\"font-size: 6rem;\"></i>\n    <p class=\"bold text-info mt-3\">{{amount_sended}} ETH sended.<p>\n    <p class=\"text-info mt-2\">Your transaction was successful.</p>\n    <button (click)=\"goHome()\" class=\"btn btn-info submit-btn btn-block mt-5 mb-4\">Make another transaction</button>\n  </div>\n  <div *ngIf=\"!loading && custom_page ==='PAGE_ERROR'\" className=\"py-5\" style=\"text-align: center;\">\n    <i class=\"bi-x text-info\" style=\"font-size: 6rem;\"></i>\n    <p class=\"text-info mt-2\">Sorry, the transaction failed</p>\n    <button (click)=\"goHome()\" class=\"btn btn-info submit-btn btn-block mt-5 mb-4\">Try Again...</button>\n  </div>\n</app-wrapper>"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/views/home/home.component.html":
 /*!**************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/views/home/home.component.html ***!
@@ -41,7 +74,7 @@ module.exports = "<router-outlet></router-outlet>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-body-wrapper full-page-wrapper auth-page\">\n  <div class=\"content-wrapper d-flex align-items-center auth auth-bg-1 theme-one\">\n    <div class=\"row w-100 ml-0\">\n      <div class=\"col-lg-4 mx-auto\">\n        <h2 class=\"text-center mb-4\" style=\"color: white;\">Send Ether</h2>\n        <div class=\"auto-form-wrapper\">\n          <div class=\"row mb-4\">\n            <div class=\"col-6 bold text-info font-weight-bold\">Balance actual</div>\n            <div class=\"col-6 bold text-info font-weight-bold\">{{user_balance}} Ethers</div>\n          </div>\n          <hr/>\n          <form (ngSubmit)=\"onSubmit(form.value)\" #form=\"ngForm\">\n            <div class=\"form-group\">\n              <label class=\"label\">Address ETH</label>\n              <div class=\"input-group\" [ngStyle]=\"{'margin-bottom': form.value.address !== '' ? '39px' : '0px' }\">\n                <input ngModel name=\"address\" type=\"text\" class=\"form-control\" [ngClass]=\"{'is-valid':validateAddress(form.value.address), 'is-invalid': (!validateAddress(form.value.address) && form.value.address !== '')}\" required placeholder=\"Example: 0x892...\" style=\"min-height:44px\">\n                <div *ngIf=\"form.value.address\" class=\"valid-feedback\">\n                  The ETH Address is valid.\n                </div>\n                <div *ngIf=\"(!validateAddress(form.value.address) && form.value.address !== '')\" class=\"invalid-feedback\">\n                  The ETH Address is invalid.\n                </div>\n              </div>\n              <small *ngIf=\"!form.value.address\" id=\"addressHelp\" class=\"form-text text-muted\">The address is required.</small>\n            </div>\n            <div class=\"form-group\">\n              <label class=\"label\">Amount</label>\n              <div class=\"input-group\" [ngStyle]=\"{'margin-bottom': (!validateAmount(form.value.amount) && form.value.amount !== '' && form.value.amount !== null) ? '39px' : '0px' }\">\n                <div class=\"input-group-prepend\">\n                  <div class=\"input-group-text\">ETH </div>\n                </div>\n                <input ngModel name=\"amount\" type=\"number\" [ngClass]=\"{'is-valid':validateAmount(form.value.amount), 'is-invalid': (!validateAmount(form.value.amount) && form.value.amount !== '')}\" class=\"form-control\" required placeholder=\"Example: 3.275\" style=\"min-height:44px\">\n                <div *ngIf=\"txt_amount_error\" class=\"invalid-feedback\">\n                  {{txt_amount_error}}\n                </div>\n              </div>\n              <small *ngIf=\"!form.value.amount\" id=\"addressHelp\" class=\"form-text text-muted\">The amount is required.</small>\n            </div>\n            <div class=\"form-group\">\n              <label class=\"label\">Gas</label>\n              <div class=\"input-group\">\n                <input ngModel readonly [value]=\"gas\" name=\"gas\" type=\"text\" class=\"form-control\" [placeholder]=\"gas\" style=\"min-height:44px\">\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <button [disabled]=\"!validateAmount(form.value.amount) || !validateAddress(form.value.address)\" class=\"btn btn-info submit-btn btn-block\">Generate Transaction</button>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<app-wrapper title=\"Send Ether\">\n  <app-user-balance [userBalance]=\"user_balance\"></app-user-balance>\n  <form (ngSubmit)=\"onSubmit(form.value)\" #form=\"ngForm\">\n    <div class=\"form-group\">\n      <label class=\"label\">Address ETH</label>\n      <div class=\"input-group\" [ngStyle]=\"{'margin-bottom': form.value.address !== '' ? '39px' : '0px' }\">\n        <input ngModel name=\"address\" type=\"text\" class=\"form-control\" [ngClass]=\"{'is-valid':validateAddress(form.value.address), 'is-invalid': (!validateAddress(form.value.address) && form.value.address !== '')}\" required placeholder=\"Example: 0x892...\" style=\"min-height:44px\">\n        <div *ngIf=\"form.value.address\" class=\"valid-feedback\">\n          The ETH Address is valid.\n        </div>\n        <div *ngIf=\"(!validateAddress(form.value.address) && form.value.address !== '')\" class=\"invalid-feedback\">\n          The ETH Address is invalid.\n        </div>\n      </div>\n      <small *ngIf=\"!form.value.address\" id=\"addressHelp\" class=\"form-text text-muted\">The address is required.</small>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"label\">Amount</label>\n      <div class=\"input-group\" [ngStyle]=\"{'margin-bottom': (!validateAmount(form.value.amount) && form.value.amount !== '' && form.value.amount !== null) ? '39px' : '0px' }\">\n        <div class=\"input-group-prepend\">\n          <div class=\"input-group-text\">ETH </div>\n        </div>\n        <input ngModel name=\"amount\" type=\"number\" [ngClass]=\"{'is-valid':validateAmount(form.value.amount), 'is-invalid': (!validateAmount(form.value.amount) && form.value.amount !== '')}\" class=\"form-control\" required placeholder=\"Example: 3.275\" style=\"min-height:44px\">\n        <div *ngIf=\"txt_amount_error\" class=\"invalid-feedback\">\n          {{txt_amount_error}}\n        </div>\n      </div>\n      <small *ngIf=\"!form.value.amount\" id=\"addressHelp\" class=\"form-text text-muted\">The amount is required.</small>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"label\">Gas</label>\n      <div class=\"input-group\">\n        <input ngModel readonly [value]=\"gas\" name=\"gas\" type=\"text\" class=\"form-control\" [placeholder]=\"gas\" style=\"min-height:44px\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"!validateAmount(form.value.amount) || !validateAddress(form.value.address)\" class=\"btn btn-info submit-btn btn-block\">Generate Transaction</button>\n    </div>\n  </form>\n</app-wrapper>"
 
 /***/ }),
 
@@ -80,19 +113,22 @@ module.exports = g;
 /*!***************************************!*\
   !*** ./src/app/actions/app.action.ts ***!
   \***************************************/
-/*! exports provided: SET_TRANSACTION, SET_LOADING, SetTransactionAction, SetTLoadingAction */
+/*! exports provided: SET_TRANSACTION, SET_LOADING, SET_CUSTOM_PAGE, SetTransactionAction, SetLoadingAction, SetCustomPageAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TRANSACTION", function() { return SET_TRANSACTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LOADING", function() { return SET_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CUSTOM_PAGE", function() { return SET_CUSTOM_PAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTransactionAction", function() { return SetTransactionAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTLoadingAction", function() { return SetTLoadingAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetLoadingAction", function() { return SetLoadingAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetCustomPageAction", function() { return SetCustomPageAction; });
 /* harmony import */ var _models_transaction_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/transaction.model */ "./src/app/models/transaction.model.ts");
 
 const SET_TRANSACTION = '[APP] Set Transaction';
 const SET_LOADING = '[APP] Set Loading';
+const SET_CUSTOM_PAGE = '[APP] Set Custom Page';
 class SetTransactionAction {
     constructor(data) {
         this.data = data;
@@ -102,14 +138,23 @@ class SetTransactionAction {
 SetTransactionAction.ctorParameters = () => [
     { type: _models_transaction_model__WEBPACK_IMPORTED_MODULE_0__["Transaction"] }
 ];
-class SetTLoadingAction {
+class SetLoadingAction {
     constructor(status) {
         this.status = status;
         this.type = SET_LOADING;
     }
 }
-SetTLoadingAction.ctorParameters = () => [
+SetLoadingAction.ctorParameters = () => [
     { type: Boolean }
+];
+class SetCustomPageAction {
+    constructor(custom_page) {
+        this.custom_page = custom_page;
+        this.type = SET_CUSTOM_PAGE;
+    }
+}
+SetCustomPageAction.ctorParameters = () => [
+    { type: undefined }
 ];
 
 
@@ -128,13 +173,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _views_home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/home/home.component */ "./src/app/views/home/home.component.ts");
+/* harmony import */ var _views_custom_page_custom_page_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/custom-page/custom-page.component */ "./src/app/views/custom-page/custom-page.component.ts");
+/* harmony import */ var _views_home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/home/home.component */ "./src/app/views/home/home.component.ts");
+
 
 
 
 
 const routes = [
-    { path: '', component: _views_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
+    { path: '', component: _views_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"] },
+    { path: 'custom-page', component: _views_custom_page_custom_page_component__WEBPACK_IMPORTED_MODULE_3__["CustomPageComponent"] },
     { path: '**', redirectTo: '' }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -197,14 +245,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment.prod */ "./src/environments/environment.prod.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm2015/store-devtools.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
-/* harmony import */ var _app_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.reducer */ "./src/app/app.reducer.ts");
-/* harmony import */ var _pipes_first_uppercase_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pipes/first-uppercase.pipe */ "./src/app/pipes/first-uppercase.pipe.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _views_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/home/home.component */ "./src/app/views/home/home.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment.prod */ "./src/environments/environment.prod.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm2015/store-devtools.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
+/* harmony import */ var _app_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.reducer */ "./src/app/app.reducer.ts");
+/* harmony import */ var _pipes_first_uppercase_pipe__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pipes/first-uppercase.pipe */ "./src/app/pipes/first-uppercase.pipe.ts");
+/* harmony import */ var _pipes_number_to_fix__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pipes/number-to-fix */ "./src/app/pipes/number-to-fix.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _views_home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/home/home.component */ "./src/app/views/home/home.component.ts");
+/* harmony import */ var _views_custom_page_custom_page_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/custom-page/custom-page.component */ "./src/app/views/custom-page/custom-page.component.ts");
+/* harmony import */ var _components_wrapper_wrapper_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/wrapper/wrapper.component */ "./src/app/components/wrapper/wrapper.component.ts");
+/* harmony import */ var _components_user_balance_user_balance_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/user-balance/user-balance.component */ "./src/app/components/user-balance/user-balance.component.ts");
+
+//Angular
 
 
 
@@ -218,7 +273,11 @@ __webpack_require__.r(__webpack_exports__);
 
 //Pipes
 
+
 //Components
+
+
+
 
 
 let AppModule = class AppModule {
@@ -226,23 +285,28 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
-            _views_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
-            _pipes_first_uppercase_pipe__WEBPACK_IMPORTED_MODULE_9__["FirstUppercasePipe"],
+            _app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"],
+            _views_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"],
+            _components_wrapper_wrapper_component__WEBPACK_IMPORTED_MODULE_15__["WrapperComponent"],
+            _views_custom_page_custom_page_component__WEBPACK_IMPORTED_MODULE_14__["CustomPageComponent"],
+            _components_user_balance_user_balance_component__WEBPACK_IMPORTED_MODULE_16__["UserBalanceComponent"],
+            _pipes_first_uppercase_pipe__WEBPACK_IMPORTED_MODULE_10__["FirstUppercasePipe"],
+            _pipes_number_to_fix__WEBPACK_IMPORTED_MODULE_11__["NumberToFix"],
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-            _ngrx_store__WEBPACK_IMPORTED_MODULE_7__["StoreModule"].forRoot(_app_reducer__WEBPACK_IMPORTED_MODULE_8__["appReducers"]),
-            _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__["StoreDevtoolsModule"].instrument({
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+            _ngrx_store__WEBPACK_IMPORTED_MODULE_8__["StoreModule"].forRoot(_app_reducer__WEBPACK_IMPORTED_MODULE_9__["appReducers"]),
+            _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__["StoreDevtoolsModule"].instrument({
                 maxAge: 25,
-                logOnly: src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_4__["environment"].production
+                logOnly: src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__["environment"].production
             })
         ],
         providers: [],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
     })
 ], AppModule);
 
@@ -265,6 +329,70 @@ __webpack_require__.r(__webpack_exports__);
 const appReducers = {
     app: _reducers_app_reducer__WEBPACK_IMPORTED_MODULE_0__["appReducer"],
 };
+
+
+/***/ }),
+
+/***/ "./src/app/components/user-balance/user-balance.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/user-balance/user-balance.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: UserBalanceComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserBalanceComponent", function() { return UserBalanceComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let UserBalanceComponent = class UserBalanceComponent {
+    ngOnInit() {
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], UserBalanceComponent.prototype, "userBalance", void 0);
+UserBalanceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-user-balance',
+        template: __webpack_require__(/*! raw-loader!./user-balance.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/user-balance/user-balance.component.html")
+    })
+], UserBalanceComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/wrapper/wrapper.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/components/wrapper/wrapper.component.ts ***!
+  \*********************************************************/
+/*! exports provided: WrapperComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WrapperComponent", function() { return WrapperComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let WrapperComponent = class WrapperComponent {
+    ngOnInit() {
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], WrapperComponent.prototype, "title", void 0);
+WrapperComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-wrapper',
+        template: __webpack_require__(/*! raw-loader!./wrapper.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/wrapper/wrapper.component.html")
+    })
+], WrapperComponent);
+
 
 
 /***/ }),
@@ -322,37 +450,96 @@ FirstUppercasePipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/providers/alert.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/providers/alert.service.ts ***!
-  \********************************************/
-/*! exports provided: AlertService */
+/***/ "./src/app/pipes/number-to-fix.ts":
+/*!****************************************!*\
+  !*** ./src/app/pipes/number-to-fix.ts ***!
+  \****************************************/
+/*! exports provided: NumberToFix */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlertService", function() { return AlertService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NumberToFix", function() { return NumberToFix; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 
 
-
-let AlertService = class AlertService {
-    constructor() {
-        this.alertSuccess = (title, description) => sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire(title, description, 'success');
-        this.alertError = (title, description) => sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire(title, description, 'error');
-        this.alertInfo = (title, description) => sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire(title, description, 'info');
-        this.showLoading = (title) => sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire({ title, onBeforeOpen: () => sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.showLoading(), allowOutsideClick: false });
-        this.closeAlert = () => sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.close();
+/*
+ * Raise the value exponentially
+ * Takes an exponent argument that defaults to 1.
+ * Usage:
+ *   value | numberToFix:exponent
+ * Example:
+ *   {{ 2 | numberToFix:10 }}
+ *   formats to: 1024
+*/
+let NumberToFix = class NumberToFix {
+    transform(value, fix) {
+        return Number(value.toFixed(fix));
     }
 };
-AlertService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+NumberToFix = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+        name: 'numberToFix'
+    })
+], NumberToFix);
+
+
+
+/***/ }),
+
+/***/ "./src/app/providers/app.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/providers/app.service.ts ***!
+  \******************************************/
+/*! exports provided: AppService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppService", function() { return AppService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
+/* harmony import */ var _actions_app_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/app.action */ "./src/app/actions/app.action.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
+
+
+
+
+let AppService = class AppService {
+    constructor(router, _store, http) {
+        this.router = router;
+        this._store = _store;
+        this.http = http;
+    }
+    sendTransaction(data) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.router.navigate(['custom-page']);
+            this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetLoadingAction"](true));
+            //This timer is only for simulate the loading
+            setTimeout(() => tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+                //const response = await this.http.post('api/send-transaction', data)
+                this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetTransactionAction"](data));
+                this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetCustomPageAction"]("PAGE_ERROR"));
+                this._store.dispatch(new _actions_app_action__WEBPACK_IMPORTED_MODULE_4__["SetLoadingAction"](false));
+            }), 3000);
+        });
+    }
+};
+AppService.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"] }
+];
+AppService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     })
-], AlertService);
+], AppService);
 
 
 
@@ -375,24 +562,69 @@ const initState = {
     transaction: { address: '', amount: 0, gas: gas_random },
     user_balance: 1200.075,
     loading: false,
+    custom_page: "PAGE_SUCCESS"
 };
 function appReducer(state = initState, action) {
     switch (action.type) {
         case _actions_app_action__WEBPACK_IMPORTED_MODULE_0__["SET_TRANSACTION"]:
-            return {
-                transaction: Object.assign({}, action.data),
-                user_balance: state.user_balance - action.data.amount,
-                loading: false
-            };
+            return Object.assign({}, state, { transaction: Object.assign({}, action.data), user_balance: state.user_balance - action.data.amount - action.data.gas });
         case _actions_app_action__WEBPACK_IMPORTED_MODULE_0__["SET_LOADING"]:
-            return {
-                transaction: state.transaction,
-                user_balance: state.user_balance,
-                loading: action.status
-            };
+            return Object.assign({}, state, { loading: action.status });
+        case _actions_app_action__WEBPACK_IMPORTED_MODULE_0__["SET_CUSTOM_PAGE"]:
+            return Object.assign({}, state, { custom_page: action.custom_page });
         default: return state;
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/app/views/custom-page/custom-page.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/views/custom-page/custom-page.component.ts ***!
+  \************************************************************/
+/*! exports provided: CustomPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomPageComponent", function() { return CustomPageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+let CustomPageComponent = class CustomPageComponent {
+    constructor(_store, router) {
+        this._store = _store;
+        this.router = router;
+    }
+    ngOnInit() {
+        this._store.select('app').subscribe(app => {
+            this.user_balance = app.user_balance;
+            this.loading = app.loading;
+            this.custom_page = app.custom_page;
+            this.amount_sended = app.transaction.amount + app.transaction.gas;
+        });
+    }
+    goHome() {
+        this.router.navigate(['']);
+    }
+};
+CustomPageComponent.ctorParameters = () => [
+    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_2__["Store"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
+CustomPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-custom-page',
+        template: __webpack_require__(/*! raw-loader!./custom-page.component.html */ "./node_modules/raw-loader/index.js!./src/app/views/custom-page/custom-page.component.html")
+    })
+], CustomPageComponent);
+
 
 
 /***/ }),
@@ -409,7 +641,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var src_app_providers_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/alert.service */ "./src/app/providers/alert.service.ts");
+/* harmony import */ var src_app_providers_app_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/app.service */ "./src/app/providers/app.service.ts");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
 /* harmony import */ var web3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! web3 */ "./node_modules/web3/lib/index.js");
 /* harmony import */ var web3__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(web3__WEBPACK_IMPORTED_MODULE_4__);
@@ -420,8 +652,8 @@ __webpack_require__.r(__webpack_exports__);
 
 let HomeComponent = class HomeComponent {
     //0xA11e73F851C12d8d25a7b88a6121AD365De1838c
-    constructor(_alertService, _store) {
-        this._alertService = _alertService;
+    constructor(_appService, _store) {
+        this._appService = _appService;
         this._store = _store;
         this.validateAmount = (amount) => {
             this.txt_amount_error = null;
@@ -443,17 +675,17 @@ let HomeComponent = class HomeComponent {
     }
     ngOnInit() {
         this._store.select('app').subscribe(app => {
-            console.log(app);
             this.user_balance = app.user_balance;
             this.gas = app.transaction.gas;
         });
     }
     onSubmit(data) {
-        console.log(data);
+        data.gas = this.gas;
+        this._appService.sendTransaction(data);
     }
 };
 HomeComponent.ctorParameters = () => [
-    { type: src_app_providers_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"] },
+    { type: src_app_providers_app_service__WEBPACK_IMPORTED_MODULE_2__["AppService"] },
     { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"] }
 ];
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
